@@ -28,7 +28,7 @@ The hardware is designed with the open source EDA Suite KiCad
 you have to install the Tinkerforge kicad-libraries
 (https://github.com/Tinkerforge/kicad-libraries). You can either clone
 them directly in hardware/ or clone them in a seperate folder and
-symlink them into hardware /
+symlink them into hardware/
 (ln -s kicad_path/kicad-libraries project_path/hardware). After that you 
 can open the .pro file in hardware/ with kicad and from there view and 
 modify the schematics pcb layout.
@@ -47,5 +47,5 @@ seperate folder and symlink them into software/src/
 After that you can generate a Makefile from the cmake script with the
 generate_makefile shell script (in software/) and build the firmware 
 by invoking make in software/build/. The firmware (.bin) can then be found
-in software/build/ and uploaded with brickv (click button advanced features
+in software/build/ and uploaded with brickv (click button "advanced features"
 on start screen).
