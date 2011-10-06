@@ -1,7 +1,3 @@
-// tested with 
-// gcc -lpthread -lrt -o example_beep bricklet_piezo_buzzer.c 
-//     ip_connection.c example_beep.c
-// on Ubuntu
 
 #include <stdio.h>
 

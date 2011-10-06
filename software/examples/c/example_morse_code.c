@@ -1,7 +1,3 @@
-// tested with 
-// gcc -lpthread -lrt -o example_morse_code bricklet_piezo_buzzer.c 
-//     ip_connection.c example_morse_code.c
-// on Ubuntu
 
 #include <stdio.h>
 
