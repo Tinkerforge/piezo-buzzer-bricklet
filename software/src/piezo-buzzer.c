@@ -28,6 +28,7 @@
 #include "bricklib/drivers/adc/adc.h"
 #include "config.h"
 #include "bricklib/utility/util_definitions.h"
+#include "bricklib/utility/init.h"
 
 #define MORSE_DIT_LENGTH 100
 #define MORSE_DAH_LENGTH MORSE_DIT_LENGTH*3
@@ -91,12 +92,10 @@ void morse_code(uint8_t com, MorseCode *data) {
     BC->morse_buzz = false;
 }
 
-void tick(void) {
-	if(BC->beep_duration > 0) {
-		BC->beep_duration--;
-		buzz();
-
-		if(BC->beep_duration == 0) {
+void tick(uint8_t tick_type) {
+	if(tick_type & TICK_TASK_TYPE_MESSAGE) {
+		if(BC->beep_finished) {
+			BC->beep_finished = false;
 			StandardMessage sm = {
 				BS->stack_id,
 				TYPE_BEEP_FINISHED,
@@ -107,43 +106,9 @@ void tick(void) {
 										   sizeof(StandardMessage),
 										   *BA->com_current);
 		}
-	} else if(BC->morse_duration > 0) {
-		BC->morse_duration--;
-		if(BC->morse_buzz) {
-			buzz();
 
-			// Make pause after dit or dah finished
-			if(BC->morse_duration == 0) {
-				BC->morse_buzz = false;
-				BC->morse_duration = MORSE_SPACE_LENGTH;
-			}
-		}
-	}
-
-	bool not_ready = true;
-
-	while(BC->morse_pos < MORSE_LENGTH &&
-	      BC->morse_duration == 0 &&
-	      not_ready) {
-		switch(BC->morse[BC->morse_pos]) {
-			case '.':
-				BC->morse_buzz = true;
-				BC->morse_duration = MORSE_DIT_LENGTH;
-				not_ready = false;
-				break;
-			case '-':
-				BC->morse_buzz = true;
-				BC->morse_duration = MORSE_DAH_LENGTH;
-				not_ready = false;
-				break;
-			case ' ':
-				BC->morse_buzz = false;
-				BC->morse_duration = MORSE_SPACE_LENGTH;
-				not_ready = false;
-				break;
-		}
-		BC->morse_pos++;
-		if(BC->morse_pos == MORSE_LENGTH) {
+		if(BC->morse_finished) {
+			BC->morse_finished = false;
 			StandardMessage sm = {
 				BS->stack_id,
 				TYPE_MORSE_CODE_FINISHED,
@@ -153,6 +118,56 @@ void tick(void) {
 			BA->send_blocking_with_timeout(&sm,
 										   sizeof(StandardMessage),
 										   *BA->com_current);
+		}
+	}
+
+	if(tick_type & TICK_TASK_TYPE_CALCULATION) {
+		if(BC->beep_duration > 0) {
+			BC->beep_duration--;
+			buzz();
+
+			if(BC->beep_duration == 0) {
+				BC->beep_finished = true;
+			}
+		} else if(BC->morse_duration > 0) {
+			BC->morse_duration--;
+			if(BC->morse_buzz) {
+				buzz();
+
+				// Make pause after dit or dah finished
+				if(BC->morse_duration == 0) {
+					BC->morse_buzz = false;
+					BC->morse_duration = MORSE_SPACE_LENGTH;
+				}
+			}
+		}
+
+		bool not_ready = true;
+
+		while(BC->morse_pos < MORSE_LENGTH &&
+			  BC->morse_duration == 0 &&
+			  not_ready) {
+			switch(BC->morse[BC->morse_pos]) {
+				case '.':
+					BC->morse_buzz = true;
+					BC->morse_duration = MORSE_DIT_LENGTH;
+					not_ready = false;
+					break;
+				case '-':
+					BC->morse_buzz = true;
+					BC->morse_duration = MORSE_DAH_LENGTH;
+					not_ready = false;
+					break;
+				case ' ':
+					BC->morse_buzz = false;
+					BC->morse_duration = MORSE_SPACE_LENGTH;
+					not_ready = false;
+					break;
+			}
+			BC->morse_pos++;
+			if(BC->morse_pos == MORSE_LENGTH) {
+				BC->morse_finished = true;
+			}
 		}
 	}
 }

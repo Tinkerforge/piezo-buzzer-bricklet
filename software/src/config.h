@@ -31,7 +31,7 @@
 
 #define BRICKLET_HARDWARE_NAME "Piezo Buzzer Bricklet 1.0"
 #define BRICKLET_FIRMWARE_VERSION_MAJOR 1
-#define BRICKLET_FIRMWARE_VERSION_MINOR 0
+#define BRICKLET_FIRMWARE_VERSION_MINOR 1
 #define BRICKLET_FIRMWARE_VERSION_REVISION 0
 
 #define BOARD_MCK 64000000
@@ -46,6 +46,9 @@ typedef struct {
 	char morse[MORSE_LENGTH];
 	bool morse_buzz;
 	uint8_t morse_pos;
+
+	bool beep_finished;
+	bool morse_finished;
 } BrickContext;
 
 #endif

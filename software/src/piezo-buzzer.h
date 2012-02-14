@@ -55,6 +55,6 @@ void morse_code(uint8_t com, MorseCode *data);
 void invocation(uint8_t com, uint8_t *data);
 void constructor(void);
 void destructor(void);
-void tick(void);
+void tick(uint8_t tick_type);
 
 #endif
