@@ -9,10 +9,10 @@ from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_piezo_buzzer import PiezoBuzzer
 
 if __name__ == "__main__":
-    ipcon = IPConnection(HOST, PORT) # Create ip connection to brickd
+    ipcon = IPConnection(HOST, PORT) # Create IP connection to brickd
 
     pb = PiezoBuzzer(UID) # Create device object
-    ipcon.add_device(pb) # Add device to ip connection
+    ipcon.add_device(pb) # Add device to IP connection
     # Don't use device before it is added to a connection
 
 

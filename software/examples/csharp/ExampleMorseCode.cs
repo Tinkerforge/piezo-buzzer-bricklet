@@ -10,14 +10,13 @@ class Example
 	{
 		IPConnection ipcon = new IPConnection(HOST, PORT); // Create connection to brickd
 		BrickletPiezoBuzzer pb = new BrickletPiezoBuzzer(UID); // Create device object
-		ipcon.AddDevice(pb); // Add device to ip connection
+		ipcon.AddDevice(pb); // Add device to IP connection
 		// Don't use device before it is added to a connection
-
 
 		// Morse SOS
 		pb.MorseCode("... --- ...");
 
 		System.Console.WriteLine("Press ctrl+c to exit");
 		ipcon.JoinThread();
-    }
+	}
 }
