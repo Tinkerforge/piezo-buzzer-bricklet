@@ -15,7 +15,6 @@ if __name__ == "__main__":
     ipcon.add_device(pb) # Add device to IP connection
     # Don't use device before it is added to a connection
 
-
     # Morse SOS
     pb.morse_code('... --- ...')
 
