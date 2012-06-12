@@ -28,8 +28,9 @@ int main() {
 	// Don't use device before it is added to a connection
 
 	// Make 2 second beep
-    piezo_buzzer_beep(&pb, 2000);
+	piezo_buzzer_beep(&pb, 2000);
 
-	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
+	printf("Press key to exit\n");
+	getchar();
+	ipcon_destroy(&ipcon);
 }

@@ -16,7 +16,8 @@ class Example
 		// Morse SOS
 		pb.MorseCode("... --- ...");
 
-		System.Console.WriteLine("Press ctrl+c to exit");
-		ipcon.JoinThread();
+		System.Console.WriteLine("Press key to exit");
+		System.Console.ReadKey();
+		ipcon.Destroy();
 	}
 }

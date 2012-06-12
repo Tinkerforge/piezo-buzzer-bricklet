@@ -20,7 +20,7 @@ public class ExampleBeep {
 		// Make 2 second beep
 		pb.beep(2000);
 
-		System.out.println("Press ctrl+c to exit");
-		ipcon.joinThread();
+		System.console().readLine("Press key to exit\n");
+		ipcon.destroy();
 	}
 }

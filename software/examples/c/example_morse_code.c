@@ -30,6 +30,7 @@ int main() {
 	// Morse SOS
 	piezo_buzzer_morse_code(&pb, "... --- ...");
 
-	printf("Press ctrl+c to close\n");
-	ipcon_join_thread(&ipcon); // Join mainloop of IP connection
+	printf("Press key to exit\n");
+	getchar();
+	ipcon_destroy(&ipcon);
 }
