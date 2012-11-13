@@ -1,5 +1,5 @@
 /* piezo-buzzer-bricklet
- * Copyright (C) 2011 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2011-2012 Olaf Lüke <olaf@tinkerforge.com>
  *
  * config.h: Piezo Buzzer Bricklet specific configuration
  *
@@ -29,10 +29,15 @@
 
 #include "piezo-buzzer.h"
 
-#define BRICKLET_HARDWARE_NAME "Piezo Buzzer Bricklet 1.0"
-#define BRICKLET_FIRMWARE_VERSION_MAJOR 1
-#define BRICKLET_FIRMWARE_VERSION_MINOR 1
+#define BRICKLET_FIRMWARE_VERSION_MAJOR 2
+#define BRICKLET_FIRMWARE_VERSION_MINOR 0
 #define BRICKLET_FIRMWARE_VERSION_REVISION 0
+
+#define BRICKLET_HARDWARE_VERSION_MAJOR 1
+#define BRICKLET_HARDWARE_VERSION_MINOR 0
+#define BRICKLET_HARDWARE_VERSION_REVISION 0
+
+#define BRICKLET_DEVICE_IDENTIFIER 214
 
 #define BOARD_MCK 64000000
 #define INVOCATION_IN_BRICKLET_CODE

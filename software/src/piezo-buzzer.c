@@ -1,5 +1,5 @@
 /* piezo-buzzer-bricklet
- * Copyright (C) 2011 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2011-2012 Olaf Lüke <olaf@tinkerforge.com>
  *
  * piezo-buzzer.c: Implementation of Piezo Buzzer Bricklet message
  *
@@ -21,8 +21,6 @@
 
 #include "piezo-buzzer.h"
 
-#include <adc/adc.h>
-
 #include "brickletlib/bricklet_entry.h"
 #include "bricklib/bricklet/bricklet_communication.h"
 #include "bricklib/drivers/adc/adc.h"
@@ -34,14 +32,22 @@
 #define MORSE_DAH_LENGTH MORSE_DIT_LENGTH*3
 #define MORSE_SPACE_LENGTH MORSE_DIT_LENGTH
 
-void invocation(uint8_t com, uint8_t *data) {
-	switch(((StandardMessage*)data)->type) {
-		case TYPE_BEEP:
+void invocation(const ComType com, const uint8_t *data) {
+	switch(((MessageHeader*)data)->fid) {
+		case FID_BEEP: {
 			beep(com, (Beep*)data);
 			break;
-		case TYPE_MORSE_CODE:
+		}
+
+		case FID_MORSE_CODE: {
 			morse_code(com, (MorseCode*)data);
 			break;
+		}
+
+		default: {
+			BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_NOT_SUPPORTED, com);
+			break;
+		}
 	}
 }
 
@@ -68,7 +74,7 @@ void buzz(void) {
 	PIN_PIEZO.pio->PIO_CODR = PIN_PIEZO.mask;
 }
 
-void beep(uint8_t com, Beep *data) {
+void beep(const ComType com, const Beep *data) {
 	// Disable morse code beeping
 	BC->morse_pos = MORSE_LENGTH;
     BC->morse_duration = 0;
@@ -76,9 +82,11 @@ void beep(uint8_t com, Beep *data) {
 
 	// Enable beep
 	BC->beep_duration = data->duration;
+
+	BA->com_return_setter(com, data);
 }
 
-void morse_code(uint8_t com, MorseCode *data) {
+void morse_code(const ComType com, const MorseCode *data) {
 	// Disable beep
 	BC->beep_duration = 0;
 
@@ -90,17 +98,16 @@ void morse_code(uint8_t com, MorseCode *data) {
 	BC->morse_pos = 0;
     BC->morse_duration = 0;
     BC->morse_buzz = false;
+
+    BA->com_return_setter(com, data);
 }
 
-void tick(uint8_t tick_type) {
+void tick(const uint8_t tick_type) {
 	if(tick_type & TICK_TASK_TYPE_MESSAGE) {
 		if(BC->beep_finished) {
 			BC->beep_finished = false;
-			StandardMessage sm = {
-				BS->stack_id,
-				TYPE_BEEP_FINISHED,
-				sizeof(StandardMessage),
-			};
+			StandardMessage sm;
+			BA->com_make_default_header(&sm, BS->uid, sizeof(StandardMessage), FID_BEEP_FINISHED);
 
 			BA->send_blocking_with_timeout(&sm,
 										   sizeof(StandardMessage),
@@ -109,11 +116,8 @@ void tick(uint8_t tick_type) {
 
 		if(BC->morse_finished) {
 			BC->morse_finished = false;
-			StandardMessage sm = {
-				BS->stack_id,
-				TYPE_MORSE_CODE_FINISHED,
-				sizeof(StandardMessage),
-			};
+			StandardMessage sm;
+			BA->com_make_default_header(&sm, BS->uid, sizeof(StandardMessage), FID_MORSE_CODE_FINISHED);
 
 			BA->send_blocking_with_timeout(&sm,
 										   sizeof(StandardMessage),

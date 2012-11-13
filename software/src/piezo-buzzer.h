@@ -1,5 +1,5 @@
 /* piezo-buzzer-bricklet
- * Copyright (C) 2011 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2011-2012 Olaf Lüke <olaf@tinkerforge.com>
  *
  * piezo-buzzer.h: Implementation of Piezo Buzzer Bricklet messages
  *
@@ -24,37 +24,33 @@
 
 #include <stdint.h>
 
-#define TYPE_BEEP 1
-#define TYPE_MORSE_CODE 2
-#define TYPE_BEEP_FINISHED 3
-#define TYPE_MORSE_CODE_FINISHED 4
+#include "bricklib/com/com_common.h"
+
+#define FID_BEEP 1
+#define FID_MORSE_CODE 2
+#define FID_BEEP_FINISHED 3
+#define FID_MORSE_CODE_FINISHED 4
 
 typedef struct {
-	uint8_t stack_id;
-	uint8_t type;
-	uint16_t length;
+	MessageHeader header;
 } __attribute__((__packed__)) StandardMessage;
 
 typedef struct {
-	uint8_t stack_id;
-	uint8_t type;
-	uint16_t length;
+	MessageHeader header;
 	uint32_t duration;
 } __attribute__((__packed__)) Beep;
 
 typedef struct {
-	uint8_t stack_id;
-	uint8_t type;
-	uint16_t length;
+	MessageHeader header;
 	char morse[60];
 } __attribute__((__packed__)) MorseCode;
 
-void beep(uint8_t com, Beep *data);
-void morse_code(uint8_t com, MorseCode *data);
+void beep(const ComType com, const Beep *data);
+void morse_code(const ComType com, const MorseCode *data);
 
-void invocation(uint8_t com, uint8_t *data);
+void invocation(const ComType com, const uint8_t *data);
 void constructor(void);
 void destructor(void);
-void tick(uint8_t tick_type);
+void tick(const uint8_t tick_type);
 
 #endif
