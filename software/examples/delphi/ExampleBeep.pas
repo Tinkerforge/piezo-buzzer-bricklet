@@ -29,7 +29,7 @@ begin
   ipcon := TIPConnection.Create();
 
   { Create device object }
-  .pb := TBrickletPiezoBuzzerCreate(UID, ipcon);
+  pb := TBrickletPiezoBuzzer.Create(UID, ipcon);
 
   { Connect to brickd }
   ipcon.Connect(HOST, PORT);
