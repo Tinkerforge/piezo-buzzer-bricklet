@@ -7,20 +7,17 @@ public class ExampleBeep {
 	private static final String UID = "ABC"; // Change to your UID
 
 	// Note: To make the example code cleaner we do not handle exceptions. Exceptions you
-	//       might normally want to catch are described in the commnents below
+	//       might normally want to catch are described in the documentation
 	public static void main(String args[]) throws Exception {
-		// Create connection to brickd
-		IPConnection ipcon = new IPConnection(host, port); // Can throw IOException
-		BrickletPiezoBuzzer pb = new BrickletPiezoBuzzer(UID); // Create device object
+		IPConnection ipcon = new IPConnection(); // Create IP connection
+		BrickletPiezoBuzzer pb = new BrickletPiezoBuzzer(UID, ipcon); // Create device object
 
-		// Add device to IP connection
-		ipcon.addDevice(pb); // Can throw IPConnection.TimeoutException
-		// Don't use device before it is added to a connection
+		ipcon.connect(host, port); // Connect to brickd
+		// Don't use device before ipcon is connected
 
 		// Make 2 second beep
 		pb.beep(2000);
 
 		System.console().readLine("Press key to exit\n");
-		ipcon.destroy();
 	}
 }
