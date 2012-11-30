@@ -91,15 +91,20 @@ void morse_code(const ComType com, const MorseCode *data) {
 	BC->beep_duration = 0;
 
 	// Enable morse code beeping
+	BC->morse_pos = 0;
+	BC->morse_duration = 0;
+	BC->morse_buzz = false;
+
 	for(uint8_t i = 0; i < MORSE_LENGTH; i++) {
+		if(data->morse[i] != '.' && data->morse[i] != '-' && data->morse[i] != ' ') {
+			com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
+			return;
+		}
+
 		BC->morse[i] = data->morse[i];
 	}
 
-	BC->morse_pos = 0;
-    BC->morse_duration = 0;
-    BC->morse_buzz = false;
-
-    BA->com_return_setter(com, data);
+	BA->com_return_setter(com, data);
 }
 
 void tick(const uint8_t tick_type) {
