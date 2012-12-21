@@ -97,7 +97,7 @@ void morse_code(const ComType com, const MorseCode *data) {
 
 	for(uint8_t i = 0; i < MORSE_LENGTH; i++) {
 		if(data->morse[i] != '.' && data->morse[i] != '-' && data->morse[i] != ' ') {
-			com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
+			BA->com_return_error(data, sizeof(MessageHeader), MESSAGE_ERROR_CODE_INVALID_PARAMETER, com);
 			return;
 		}
 
