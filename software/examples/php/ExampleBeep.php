@@ -21,5 +21,6 @@ $pb->beep(2000);
 
 echo "Press key to exit\n";
 fgetc(fopen('php://stdin', 'r'));
+$ipcon->disconnect();
 
 ?>

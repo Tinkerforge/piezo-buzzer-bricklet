@@ -21,3 +21,4 @@ pb.beep 2000
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect

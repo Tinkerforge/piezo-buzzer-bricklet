@@ -19,3 +19,4 @@ if __name__ == "__main__":
     pb.morse_code('... --- ...')
 
     raw_input('Press key to exit\n') # Use input() in Python 3
+    ipcon.disconnect()

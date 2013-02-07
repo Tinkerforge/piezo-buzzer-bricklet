@@ -19,5 +19,6 @@ public class ExampleBeep {
 		pb.beep(2000);
 
 		System.console().readLine("Press key to exit\n");
+		ipcon.disconnect();
 	}
 }

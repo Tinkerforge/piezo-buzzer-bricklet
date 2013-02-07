@@ -19,5 +19,6 @@ public class ExampleMorseCode {
 		pb.morseCode("... --- ...");
 
 		System.console().readLine("Press key to exit\n");
+		ipcon.disconnect();
 	}
 }

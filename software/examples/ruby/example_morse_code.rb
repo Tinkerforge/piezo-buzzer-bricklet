@@ -21,3 +21,4 @@ pb.morse_code '... --- ...'
 
 puts 'Press key to exit'
 $stdin.gets
+ipcon.disconnect
