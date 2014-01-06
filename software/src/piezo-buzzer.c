@@ -52,6 +52,8 @@ void invocation(const ComType com, const uint8_t *data) {
 }
 
 void constructor(void) {
+	_Static_assert(sizeof(BrickContext) <= BRICKLET_CONTEXT_MAX_SIZE, "BrickContext too big");
+
     PIN_PIEZO.type = PIO_OUTPUT_0;
     PIN_PIEZO.attribute = PIO_DEFAULT;
     BA->PIO_Configure(&PIN_PIEZO, 1);
