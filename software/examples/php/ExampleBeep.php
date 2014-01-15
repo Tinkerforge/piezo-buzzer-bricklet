@@ -6,14 +6,14 @@ require_once('Tinkerforge/BrickletPiezoBuzzer.php');
 use Tinkerforge\IPConnection;
 use Tinkerforge\BrickletPiezoBuzzer;
 
-$host = 'localhost';
-$port = 4223;
-$uid = '6tU'; // Change to your UID
+const HOST = 'localhost';
+const PORT = 4223;
+const UID = '6tU'; // Change to your UID
 
 $ipcon = new IPConnection(); // Create IP connection
-$pb = new BrickletPiezoBuzzer($uid, $ipcon); // Create device object
+$pb = new BrickletPiezoBuzzer(UID, $ipcon); // Create device object
 
-$ipcon->connect($host, $port); // Connect to brickd
+$ipcon->connect(HOST, PORT); // Connect to brickd
 // Don't use device before ipcon is connected
 
 // Make 2 second beep
