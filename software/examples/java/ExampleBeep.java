@@ -18,7 +18,7 @@ public class ExampleBeep {
 		// Make 2 second beep
 		pb.beep(2000);
 
-		System.console().readLine("Press key to exit\n");
+		System.out.println("Press key to exit"); System.in.read();
 		ipcon.disconnect();
 	}
 }
