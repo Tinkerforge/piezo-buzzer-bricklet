@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Do 25 Aug 2011 13:37:56 CEST
+EESchema Schematic File Version 2  date Fr 30 Dez 2011 10:13:36 CET
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -36,8 +36,8 @@ $Descr A4 11700 8267
 encoding utf-8
 Sheet 1 1
 Title "Piezo Buzzer Bricklet"
-Date "25 aug 2011"
-Rev "1.0"
+Date "30 dec 2011"
+Rev "1.1"
 Comp "Tinkerforge GmbH"
 Comment1 "Licensed under CERN OHL v.1.1"
 Comment2 "Copyright (©) 2011, B.Nordmeyer <bastian@tinkerforge.com>"
@@ -64,8 +64,6 @@ Wire Wire Line
 	5850 1850 6200 1850
 Wire Wire Line
 	7150 3000 7150 2950
-Wire Wire Line
-	5300 6050 5300 5950
 Wire Wire Line
 	6450 4500 6650 4500
 Connection ~ 5550 4300
@@ -98,8 +96,6 @@ Wire Wire Line
 Wire Wire Line
 	5400 3150 5400 2900
 Wire Wire Line
-	5300 5450 5300 5350
-Wire Wire Line
 	7150 3500 7150 3400
 Wire Wire Line
 	6900 1850 7150 1850
@@ -127,20 +123,20 @@ NoConn ~ 5850 2550
 NoConn ~ 5850 2450
 NoConn ~ 5850 2750
 $Comp
-L R R2
+L R R1
 U 1 1 4CE14D53
 P 7000 2500
-F 0 "R2" V 7080 2500 50  0000 C CNN
+F 0 "R1" V 7080 2500 50  0000 C CNN
 F 1 "10k" V 7000 2500 50  0000 C CNN
 F 2 "0603" H 7000 2500 60  0001 C CNN
 	1    7000 2500
 	-1   0    0    1   
 $EndComp
 $Comp
-L GND #PWR01
+L GND #PWR7
 U 1 1 4CE14D49
 P 7150 3500
-F 0 "#PWR01" H 7150 3500 30  0001 C CNN
+F 0 "#PWR7" H 7150 3500 30  0001 C CNN
 F 1 "GND" H 7150 3430 30  0001 C CNN
 	1    7150 3500
 	1    0    0    -1  
@@ -155,46 +151,25 @@ F 2 "PS1420" H 7450 2850 60  0001 C CNN
 	1    7450 2850
 	1    0    0    -1  
 $EndComp
-$Comp
-L GND #PWR02
-U 1 1 4CE11CAB
-P 5300 6050
-F 0 "#PWR02" H 5300 6050 30  0001 C CNN
-F 1 "GND" H 5300 5980 30  0001 C CNN
-	1    5300 6050
-	1    0    0    -1  
-$EndComp
-Text GLabel 5300 5350 1    60   Output ~ 0
-SEL
-$Comp
-L R R1
-U 1 1 4CE11C93
-P 5300 5700
-F 0 "R1" V 5380 5700 50  0000 C CNN
-F 1 "DNP" V 5300 5700 50  0000 C CNN
-F 2 "0603" H 5300 5700 60  0001 C CNN
-	1    5300 5700
-	1    0    0    -1  
-$EndComp
 Text GLabel 5450 4400 0    60   Input ~ 0
 SEL
 Text GLabel 6100 2350 2    60   Output ~ 0
 SEL
 $Comp
-L GND #PWR03
+L GND #PWR4
 U 1 1 4CE10F21
 P 6000 2100
-F 0 "#PWR03" H 6000 2100 30  0001 C CNN
+F 0 "#PWR4" H 6000 2100 30  0001 C CNN
 F 1 "GND" H 6000 2030 30  0001 C CNN
 	1    6000 2100
 	1    0    0    -1  
 $EndComp
 NoConn ~ 6450 4300
 $Comp
-L GND #PWR04
+L GND #PWR2
 U 1 1 4CE10F0B
 P 5550 4650
-F 0 "#PWR04" H 5550 4650 30  0001 C CNN
+F 0 "#PWR2" H 5550 4650 30  0001 C CNN
 F 1 "GND" H 5550 4580 30  0001 C CNN
 	1    5550 4650
 	1    0    0    -1  
@@ -208,28 +183,28 @@ SCL
 Text GLabel 6650 4500 2    60   Input ~ 0
 SDA
 $Comp
-L GND #PWR05
+L GND #PWR6
 U 1 1 4CE10ECC
 P 6950 4200
-F 0 "#PWR05" H 6950 4200 30  0001 C CNN
+F 0 "#PWR6" H 6950 4200 30  0001 C CNN
 F 1 "GND" H 6950 4130 30  0001 C CNN
 	1    6950 4200
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR06
+L VCC #PWR5
 U 1 1 4CE10EBE
 P 6450 4050
-F 0 "#PWR06" H 6450 4150 30  0001 C CNN
+F 0 "#PWR5" H 6450 4150 30  0001 C CNN
 F 1 "VCC" H 6450 4150 30  0000 C CNN
 	1    6450 4050
 	1    0    0    -1  
 $EndComp
 $Comp
-L VCC #PWR07
+L VCC #PWR3
 U 1 1 4CE10E98
 P 5950 1700
-F 0 "#PWR07" H 5950 1800 30  0001 C CNN
+F 0 "#PWR3" H 5950 1800 30  0001 C CNN
 F 1 "VCC" H 5950 1800 30  0000 C CNN
 	1    5950 1700
 	1    0    0    -1  
@@ -305,10 +280,10 @@ F 2 "Drill" H 11050 6700 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR08
+L GND #PWR1
 U 1 1 4CDE7F74
 P 5400 3150
-F 0 "#PWR08" H 5400 3150 30  0001 C CNN
+F 0 "#PWR1" H 5400 3150 30  0001 C CNN
 F 1 "GND" H 5400 3080 30  0001 C CNN
 	1    5400 3150
 	1    0    0    -1  
