@@ -14,7 +14,7 @@ int main() {
 
 	// Create device object
 	PiezoBuzzer pb;
-	piezo_buzzer_create(&pb, UID, &ipcon); 
+	piezo_buzzer_create(&pb, UID, &ipcon);
 
 	// Connect to brickd
 	if(ipcon_connect(&ipcon, HOST, PORT) < 0) {
