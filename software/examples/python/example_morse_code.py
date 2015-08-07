@@ -6,11 +6,11 @@ PORT = 4223
 UID = "XYZ" # Change to your UID
 
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_piezo_buzzer import PiezoBuzzer
+from tinkerforge.bricklet_piezo_buzzer import BrickletPiezoBuzzer
 
 if __name__ == "__main__":
     ipcon = IPConnection() # Create IP connection
-    pb = PiezoBuzzer(UID, ipcon) # Create device object
+    pb = BrickletPiezoBuzzer(UID, ipcon) # Create device object
 
     ipcon.connect(HOST, PORT) # Connect to brickd
     # Don't use device before ipcon is connected
