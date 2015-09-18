@@ -1,3 +1,4 @@
+using System;
 using Tinkerforge;
 
 class Example
@@ -17,8 +18,8 @@ class Example
 		// Morse SOS
 		pb.MorseCode("... --- ...");
 
-		System.Console.WriteLine("Press enter to exit");
-		System.Console.ReadLine();
+		Console.WriteLine("Press enter to exit");
+		Console.ReadLine();
 		ipcon.Disconnect();
 	}
 }

@@ -18,5 +18,5 @@ if __name__ == "__main__":
     # Make 2 second beep
     pb.beep(2000)
 
-    raw_input('Press key to exit\n') # Use input() in Python 3
+    raw_input("Press key to exit\n") # Use input() in Python 3
     ipcon.disconnect()

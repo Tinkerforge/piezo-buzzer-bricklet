@@ -3,17 +3,17 @@ LoadNETAssembly["Tinkerforge",NotebookDirectory[]<>"../../.."]
 
 host="localhost"
 port=4223
-uid="amb"(* Change to your UID *)
+uid="XYZ"(*Change to your UID*)
 
-(* Create IPConnection and device object *)
+(*Create IPConnection and device object*)
 ipcon=NETNew["Tinkerforge.IPConnection"]
 pb=NETNew["Tinkerforge.BrickletPiezoBuzzer",uid,ipcon]
 ipcon@Connect[host,port]
 
-(* Morse SOS *)
+(*Morse SOS*)
 pb@MorseCode["... --- ..."]
 
-(* Clean up *)
+(*Clean up*)
 ipcon@Disconnect[]
 ReleaseNETObject[pb]
 ReleaseNETObject[ipcon]

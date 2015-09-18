@@ -1,3 +1,4 @@
+Imports System
 Imports Tinkerforge
 
 Module ExampleMorseCode
@@ -15,8 +16,8 @@ Module ExampleMorseCode
         ' Morse SOS
         pb.MorseCode("... --- ...")
 
-        System.Console.WriteLine("Press key to exit")
-        System.Console.ReadLine()
+        Console.WriteLine("Press key to exit")
+        Console.ReadLine()
         ipcon.Disconnect()
     End Sub
 End Module
