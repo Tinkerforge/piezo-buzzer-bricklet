@@ -4,7 +4,7 @@ function matlab_example_beep()
 
     HOST = 'localhost';
     PORT = 4223;
-    UID = 'XYZ'; % Change to your UID
+    UID = 'XYZ'; % Change XYZ to the UID of your Piezo Buzzer Bricklet
 
     ipcon = IPConnection(); % Create IP connection
     pb = handle(BrickletPiezoBuzzer(UID, ipcon), 'CallbackProperties'); % Create device object

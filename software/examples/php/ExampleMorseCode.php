@@ -8,7 +8,7 @@ use Tinkerforge\BrickletPiezoBuzzer;
 
 const HOST = 'localhost';
 const PORT = 4223;
-const UID = 'XYZ'; // Change to your UID
+const UID = 'XYZ'; // Change XYZ to the UID of your Piezo Buzzer Bricklet
 
 $ipcon = new IPConnection(); // Create IP connection
 $pb = new BrickletPiezoBuzzer(UID, $ipcon); // Create device object
