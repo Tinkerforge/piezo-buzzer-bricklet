@@ -1,8 +1,6 @@
-use std::{io, error::Error};
+use std::{error::Error, io};
 
-use tinkerforge::{ip_connection::IpConnection, 
-                  piezo_buzzer_bricklet::*};
-
+use tinkerforge::{ip_connection::IpConnection, piezo_buzzer_bricklet::*};
 
 const HOST: &str = "localhost";
 const PORT: u16 = 4223;
@@ -13,10 +11,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let pb = PiezoBuzzerBricklet::new(UID, &ipcon); // Create device object.
 
     ipcon.connect((HOST, PORT)).recv()??; // Connect to brickd.
-    // Don't use device before ipcon is connected.
+                                          // Don't use device before ipcon is connected.
 
-		// Morse SOS
-		pb.morse_code("... --- ...".to_string());
+    // Morse SOS
+    pb.morse_code("... --- ...".to_string());
 
     println!("Press enter to exit.");
     let mut _input = String::new();
