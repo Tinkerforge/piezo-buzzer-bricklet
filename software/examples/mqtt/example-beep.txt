@@ -1,0 +1,7 @@
+
+
+# Change XYZ to the UID of your Piezo Buzzer Bricklet
+
+setup:
+	# Make 2 second beep
+	publish '{"duration": 2000}' to tinkerforge/request/piezo_buzzer_bricklet/XYZ/beep 

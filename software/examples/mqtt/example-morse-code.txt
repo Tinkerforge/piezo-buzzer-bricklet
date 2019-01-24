@@ -1,0 +1,7 @@
+
+
+# Change XYZ to the UID of your Piezo Buzzer Bricklet
+
+setup:
+	# Morse SOS
+	publish '{"morse": "... --- ..."}' to tinkerforge/request/piezo_buzzer_bricklet/XYZ/morse_code 
