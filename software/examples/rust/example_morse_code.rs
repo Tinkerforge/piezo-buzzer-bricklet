@@ -14,7 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                                           // Don't use device before ipcon is connected.
 
     // Morse SOS
-    pb.morse_code("... --- ...".to_string());
+    pb.morse_code("... --- ...".to_string()).recv()?;
 
     println!("Press enter to exit.");
     let mut _input = String::new();
